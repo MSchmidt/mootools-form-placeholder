@@ -21,7 +21,10 @@ provides:
 if (!this.Form) this.Form = {};
 
 var supportsPlaceholder = ('placeholder' in document.createElement('input'));
-if (!('supportsPlaceholder' in this) && this.supportsPlaceholder !== false && supportsPlaceholder) return;
+if (!('supportsPlaceholder' in this) && this.supportsPlaceholder !== false && supportsPlaceholder) {
+	this.Form.Placeholder = new Class({});
+	return;
+}
 
 this.Form.Placeholder = new Class({
 	Implements: Options,
