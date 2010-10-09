@@ -43,4 +43,4 @@ to check if the value of the field is blank. (rather than checking whether it eq
 Notes
 -----
 
-[forge](http://mootools.net/forge/p/form_placeholder "Page on MooTools Forge")
+Page on MooTools Forge: [form_placeholder](http://mootools.net/forge/p/form_placeholder "Page on MooTools Forge")
