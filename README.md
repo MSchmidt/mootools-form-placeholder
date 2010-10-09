@@ -4,9 +4,9 @@ MooTools-Form-Placeholder
 Provides a fallback for the placeholder property on input elements for *older* browsers.
 
 Right now the placeholder property is only supported in Webkit browsers and Firefox 4.
-This plugin will bring it to all the other browsers and do nothing in browsers with native support.
+This plugin will bring it to all the other browsers and will do nothing in browsers with native support.
 
-![Screenshot](http://github.com/MSchmidt/mootools-form-placeholder/raw/master/screenshot.png)
+![Screenshot](http://github.com/MSchmidt/mootools-form-placeholder/raw/master/screenshot.jpg)
 
 How to use
 ----------
