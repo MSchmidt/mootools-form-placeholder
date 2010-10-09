@@ -26,7 +26,8 @@ if (!('supportsPlaceholder' in this) && this.supportsPlaceholder !== false && su
 this.Form.Placeholder = new Class({
 	Implements: Options,
 	options: {
-		color: '#A9A9A9'
+		color: '#A9A9A9',
+		clearOnSubmit: true
 	},
 	initialize: function(element, options) {
 		this.setOptions(options);
@@ -54,6 +55,14 @@ this.Form.Placeholder = new Class({
 				}
 		 	}.bind(this)
 		});
+		
+		if (this.element.getParent('form') && this.options.clearOnSubmit) {
+			this.element.getParent('form').addEvent('submit', function(e){
+				if (this.element.get('value') == this.placeholder) {
+					this.element.set('value', '');
+				}
+			}.bind(this));
+		}
 	}
 });
 

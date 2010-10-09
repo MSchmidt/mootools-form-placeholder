@@ -25,3 +25,22 @@ Define a placeholder on your input field and call Form.Placeholder with the ID o
 	</script>
 
 Done!
+
+Options
+-------
+
+_color_ - change the color of the placeholder text, defaults to *#A9A9A9* (same as Chrome)
+_clearOnSubmit_ - whether the input field gets cleared when parent form is submitted, defaults to *true*
+
+clearOnSubmit is used to simplify validation on the server-side. The input field will be cleared on submit and therefor you only need
+to check if the value of the field is blank. (rather than checking whether it equals the placeholder too).
+
+	new Form.Placeholder('statusupdate', {
+		color: '#A9A9A9',
+		clearOnSubmit: true
+	});
+
+Notes
+-----
+
+[forge](http://mootools.net/forge/p/form_placeholder "Page on MooTools Forge")
