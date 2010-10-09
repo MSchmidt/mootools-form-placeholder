@@ -21,7 +21,9 @@ Define a placeholder on your input field and call Form.Placeholder with the ID o
 	<input type="text" id="statusupdate" name="statusupdate" placeholder="What's on your mind?" />
 	
 	<script type="text/javascript" charset="utf-8">
-		new Form.Placeholder('statusupdate');
+		window.addEvent('domready',function() {
+			new Form.Placeholder('statusupdate');
+		});
 	</script>
 
 Done!
@@ -45,3 +47,11 @@ Notes
 -----
 
 Page on MooTools Forge: [form_placeholder](http://mootools.net/forge/p/form_placeholder "Page on MooTools Forge")
+
+Credits
+-------
+
+Thanks to [cpojer](http://github.com/cpojer) for the original implementation
+of [MooTools-Form-Placeholder for MooTools 1.3](http://github.com/cpojer/mootools-form-placeholder)
+
+Thanks to the whole [MooTools Team](http://mootools.net/developers)!
