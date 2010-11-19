@@ -8,6 +8,9 @@ license:
 authors:
   - Matthias Schmidt (http://www.m-schmidt.eu)
 
+version:
+  - 1.2
+
 requires:
   core/1.2.5: '*'
 
@@ -38,24 +41,16 @@ this.Form.Placeholder = new Class({
 		
 		this.placeholder = this.element.get('placeholder');
 		this.original_color = this.element.getStyle('color');
+		this.is_password = this.element.get('type') == 'password' ? true : false;
 		
-		if (this.element.get('value') == '') {
-			this.element.setStyle('color', this.options.color);
-			this.element.set('value', this.placeholder);
-		}
+		this.activatePlaceholder();
 
 		this.element.addEvents({
 			'focus': function() {
-				if (this.element.get('value') == this.placeholder) {
-					this.element.set('value', '');
-					this.element.setStyle('color', this.original_color);
-				}
+				this.deactivatePlaceholder();
 			}.bind(this),
 		 	'blur': function() {
-				if (this.element.get('value') == '') {
-					this.element.setStyle('color', this.options.color);
-					this.element.set('value', this.placeholder);
-				}
+				this.activatePlaceholder();
 		 	}.bind(this)
 		});
 		
@@ -65,6 +60,24 @@ this.Form.Placeholder = new Class({
 					this.element.set('value', '');
 				}
 			}.bind(this));
+		}
+	},
+	activatePlaceholder: function() {
+		if (this.element.get('value') == '' || this.element.get('value') == this.placeholder) {
+			if (this.is_password) {
+				this.element.set('type', 'text');
+			}
+			this.element.setStyle('color', this.options.color);
+			this.element.set('value', this.placeholder);
+		}
+	},
+	deactivatePlaceholder: function() {
+		if (this.element.get('value') == this.placeholder) {
+			if (this.is_password) {
+				this.element.set('type', 'password');
+			}
+			this.element.set('value', '');
+			this.element.setStyle('color', this.original_color);
 		}
 	}
 });

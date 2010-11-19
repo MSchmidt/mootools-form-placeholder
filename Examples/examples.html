@@ -1,0 +1,41 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Mootools Form.Placeholder Example</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/mootools/1.2.5/mootools.js"></script>
+	<script type="text/javascript" src="../Source/Form.Placeholder.js"></script>
+	
+	<script type="text/javascript" charset="utf-8">
+		window.addEvent('domready', function() {
+			// for example 1
+			new Form.Placeholder('statusupdate');
+
+			// for example 2
+			new Form.Placeholder('username');
+			new Form.Placeholder('password');
+		});
+	</script>
+</head>
+<body>
+
+<h1>Mootools Form.Placeholder Example</h1>
+
+<h2>Example 1: Regular text field</h2>
+
+<form action="" method="post" accept-charset="utf-8">
+	<p><input type="text" id="statusupdate" name="statusupdate" value="" placeholder="What's on your mind?" /></p>
+</form>
+
+<hr />
+<!-- ####################################################### -->
+
+<h2>Example 2: Regular text and password field</h2>
+
+<form action="" method="post" accept-charset="utf-8">
+	<p><input type="text" id="username" name="username" value="" placeholder="Username" /></p>
+	<p><input type="password" id="password" name="password" value="" placeholder="Password" /></p>
+</form>
+
+</body>
+</html>
