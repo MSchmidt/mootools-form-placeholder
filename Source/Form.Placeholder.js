@@ -32,52 +32,55 @@ if (!('supportsPlaceholder' in this) && this.supportsPlaceholder !== false && su
 this.Form.Placeholder = new Class({
 	Implements: Options,
 	options: {
-		color: '#A9A9A9',
+		color: '#A3A3A3',
 		clearOnSubmit: true
 	},
-	initialize: function(element, options) {
+	initialize: function (selector, options) {
 		this.setOptions(options);
-		this.element = $(element);
-		
-		this.placeholder = this.element.get('placeholder');
-		this.original_color = this.element.getStyle('color');
-		this.is_password = this.element.get('type') == 'password' ? true : false;
-		
-		this.activatePlaceholder();
-
-		this.element.addEvents({
-			'focus': function() {
-				this.deactivatePlaceholder();
-			}.bind(this),
-		 	'blur': function() {
-				this.activatePlaceholder();
-		 	}.bind(this)
-		});
-		
-		if (this.element.getParent('form') && this.options.clearOnSubmit) {
-			this.element.getParent('form').addEvent('submit', function(e){
-				if (this.element.get('value') == this.placeholder) {
-					this.element.set('value', '');
+		document.getElements(selector).each (function (el) {
+			if (typeOf(el.get('placeholder')) !== 'null') {
+				el.store('placeholder', el.get('placeholder'));
+				el.store('origColor', el.getStyle('color'));
+				var isPassword = el.get('type') === 'password' ? true : false;
+				el.store('isPassword', isPassword);
+				this.activatePlaceholder(el);
+				el.addEvents({
+					'focus': function() {
+						this.deactivatePlaceholder(el);
+					}.bind(this),
+				 	'blur': function() {
+						this.activatePlaceholder(el);
+				 	}.bind(this)
+				});
+				
+				if (el.getParent('form') && this.options.clearOnSubmit) {
+					el.getParent('form').addEvent('submit', function (e) {
+						if (el.get('value') === el.retrieve('placeholder')) {
+							el.set('value', '');
+						}
+					}.bind(this));
 				}
-			}.bind(this));
-		}
-	},
-	activatePlaceholder: function() {
-		if (this.element.get('value') == '' || this.element.get('value') == this.placeholder) {
-			if (this.is_password) {
-				this.element.set('type', 'text');
 			}
-			this.element.setStyle('color', this.options.color);
-			this.element.set('value', this.placeholder);
-		}
+		}.bind(this));
 	},
-	deactivatePlaceholder: function() {
-		if (this.element.get('value') == this.placeholder) {
-			if (this.is_password) {
-				this.element.set('type', 'password');
+	
+	activatePlaceholder: function (el) {
+		if (el.get('value') === '' || el.get('value') === el.retrieve('placeholder')) {
+			if (el.retrieve('isPassword')) {
+				el.set('type', 'text');
 			}
-			this.element.set('value', '');
-			this.element.setStyle('color', this.original_color);
+			el.setStyle('color', el.retrieve('origColor'));
+			el.set('value', el.retrieve('placeholder'));
+		}
+		
+	},
+	deactivatePlaceholder: function (el) {
+		if (el.get('value') === el.retrieve('placeholder')) {
+			if (el.retrieve('isPassword')) {
+				el.set('type', 'password');
+			}
+			el.set('value', '');
+			el.setStyle('color', el.retrieve('origColor'));
 		}
 	}
 });
