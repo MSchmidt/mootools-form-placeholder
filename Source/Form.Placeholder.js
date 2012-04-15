@@ -39,7 +39,7 @@ this.Form.Placeholder = new Class({
 		this.setOptions(options);
 		this.element = $(element);
 		
-		this.placeholder = this.element.get('placeholder');
+		this.placeholder = this.element.getAttribute('placeholder');
 		this.original_color = this.element.getStyle('color');
 		this.is_password = this.element.get('type') == 'password' ? true : false;
 		
