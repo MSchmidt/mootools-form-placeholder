@@ -51,6 +51,9 @@ this.Form.Placeholder = new Class({
 			}.bind(this),
 		 	'blur': function() {
 				this.activatePlaceholder();
+		 	}.bind(this),
+		 	'change': function() {
+		 		this.element.setStyle('color', this.original_color);
 		 	}.bind(this)
 		});
 		
